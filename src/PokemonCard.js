@@ -59,7 +59,7 @@ const PokemonCard = ({ name, url, onClick }) => {
         <div className="relative group-hover:animate-bounce transition-all duration-300">
           <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-blue-500 opacity-20 rounded-full blur-md group-hover:blur-lg transition-all duration-300"></div>
           <img 
-            src={pokemonData.sprites.front_default} 
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${url.split('/')[6]}.png`} 
             alt={name} 
             className="w-40 h-40 mx-auto drop-shadow-xl transition-transform duration-300 group-hover:scale-110"
           />

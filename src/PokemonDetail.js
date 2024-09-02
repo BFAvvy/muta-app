@@ -79,7 +79,7 @@ const PokemonDetail = ({ name, onBack }) => {
       </button>
       <div className="flex flex-col md:flex-row items-center">
         <img 
-          src={pokemon.sprites.front_default} 
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} 
           alt={pokemon.name} 
           className="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-green-400 shadow-lg transform transition-transform duration-300 hover:scale-110"
         />
