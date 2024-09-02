@@ -69,7 +69,15 @@ function App() {
 
      
       <div className="container mx-auto px-4 py-8 relative z-10">
-        <h1 className="text-5xl font-bold mb-8 text-center text-green-400 drop-shadow-lg">Poké-Muta</h1>
+        
+        <div className="flex justify-center items-center mb-8">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 rounded-full blur-lg opacity-75 animate-pulse"></div>
+            <h1 className="relative text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 drop-shadow-lg animate-pulse">
+              Poké-Muta
+            </h1>
+          </div>
+        </div>
         <div className="bg-gray-900 bg-opacity-90 rounded-lg shadow-lg p-6 backdrop-filter backdrop-blur-lg">
           <SearchBar onSearch={handleSearch} />
           {selectedPokemon ? (
