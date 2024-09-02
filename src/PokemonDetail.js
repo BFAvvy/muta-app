@@ -5,6 +5,7 @@ const PokemonDetail = ({ name, onBack }) => {
   const [pokemon, setPokemon] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeTab, setActiveTab] = useState('about');
 
   useEffect(() => {
     const fetchPokemonDetail = async () => {
@@ -25,6 +26,49 @@ const PokemonDetail = ({ name, onBack }) => {
   if (error) return <div className="text-red-500 text-center">{error}</div>;
   if (!pokemon) return null;
 
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'about':
+        return (
+          <div>
+            <p className="text-green-300 mb-2">Height: {pokemon.height / 10} m</p>
+            <p className="text-green-300 mb-2">Weight: {pokemon.weight / 10} kg</p>
+            <h3 className="font-bold text-xl mb-2 text-green-400">Abilities:</h3>
+            <ul className="list-disc list-inside text-green-300">
+              {pokemon.abilities.map((ability, index) => (
+                <li key={index} className="capitalize">{ability.ability.name}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      case 'stats':
+        return (
+          <div>
+            {pokemon.stats.map((stat, index) => (
+              <div key={index} className="mb-2">
+                <p className="text-green-400 capitalize">{stat.stat.name}: {stat.base_stat}</p>
+                <div className="w-full bg-green-900 rounded-full h-2.5">
+                  <div className="bg-green-400 h-2.5 rounded-full" style={{ width: `${(stat.base_stat / 255) * 100}%` }}></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+      case 'moves':
+        return (
+          <div className="grid grid-cols-2 gap-2">
+            {pokemon.moves.slice(0, 8).map((move, index) => (
+              <span key={index} className="px-3 py-1 bg-black bg-opacity-50 text-green-400 rounded-full text-sm capitalize border border-green-400">
+                {move.move.name}
+              </span>
+            ))}
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-6 max-w-2xl mx-auto border border-green-400">
       <button 
@@ -41,27 +85,30 @@ const PokemonDetail = ({ name, onBack }) => {
         />
         <div className="md:ml-6 mt-4 md:mt-0">
           <h2 className="text-3xl font-bold mb-4 capitalize text-green-400">{pokemon.name}</h2>
-          <div className="mb-4">
-            <h3 className="font-bold text-xl mb-2 text-green-400">Abilities:</h3>
-            <ul className="list-disc list-inside text-green-300">
-              {pokemon.abilities.map((ability, index) => (
-                <li key={index} className="capitalize">{ability.ability.name}</li>
-              ))}
-            </ul>
+          <div className="flex mb-4">
+            {pokemon.types.map((type, index) => (
+              <span 
+                key={index} 
+                className="px-3 py-1 bg-black bg-opacity-50 text-green-400 rounded-full text-sm mr-2 capitalize border border-green-400"
+              >
+                {type.type.name}
+              </span>
+            ))}
           </div>
-          <div>
-            <h3 className="font-bold text-xl mb-2 text-green-400">Types:</h3>
-            <div className="flex flex-wrap">
-              {pokemon.types.map((type, index) => (
-                <span 
-                  key={index} 
-                  className="px-3 py-1 bg-black bg-opacity-50 text-green-400 rounded-full text-sm mr-2 mb-2 capitalize border border-green-400"
-                >
-                  {type.type.name}
-                </span>
-              ))}
-            </div>
+          <div className="flex mb-4">
+            {['about', 'stats', 'moves'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`mr-2 px-3 py-1 rounded-full text-sm capitalize ${
+                  activeTab === tab ? 'bg-green-400 text-black' : 'bg-black bg-opacity-50 text-green-400 border border-green-400'
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
           </div>
+          {renderTabContent()}
         </div>
       </div>
     </div>
