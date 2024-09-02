@@ -59,18 +59,18 @@ function App() {
   if (error) return <div className="text-center text-red-500 text-2xl mt-8">{error}</div>;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 to-purple-500 relative overflow-hidden">
-      {/* Decorative elements */}
+    <div className="min-h-screen bg-black relative overflow-hidden">
+     
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-400 rounded-full mix-blend-screen filter blur-xl opacity-50 animate-blob"></div>
+        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-green-300 rounded-full mix-blend-screen filter blur-xl opacity-50 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-green-500 rounded-full mix-blend-screen filter blur-xl opacity-50 animate-blob animation-delay-4000"></div>
       </div>
 
-      {/* Main content */}
+     
       <div className="container mx-auto px-4 py-8 relative z-10">
-        <h1 className="text-5xl font-bold mb-8 text-center text-white drop-shadow-lg">Poké-Muta</h1>
-        <div className="bg-white bg-opacity-90 rounded-lg shadow-lg p-6 backdrop-filter backdrop-blur-lg">
+        <h1 className="text-5xl font-bold mb-8 text-center text-green-400 drop-shadow-lg">Poké-Muta</h1>
+        <div className="bg-gray-900 bg-opacity-90 rounded-lg shadow-lg p-6 backdrop-filter backdrop-blur-lg">
           <SearchBar onSearch={handleSearch} />
           {selectedPokemon ? (
             <PokemonDetail name={selectedPokemon} onBack={() => setSelectedPokemon(null)} />

@@ -7,7 +7,7 @@ const SearchBar = ({ onSearch }) => {
         type="text"
         placeholder="Search Pokémon"
         onChange={(e) => onSearch(e.target.value)}
-        className="w-full px-4 py-2 rounded-full bg-white bg-opacity-50 border-2 border-purple-300 focus:outline-none focus:border-purple-500 focus:bg-white focus:bg-opacity-70 transition duration-300 ease-in-out placeholder-purple-400 text-purple-800"
+        className="w-full px-4 py-2 rounded-full bg-black bg-opacity-80 border-2 border-green-400 focus:outline-none focus:border-green-500 focus:bg-black focus:bg-opacity-90 transition duration-300 ease-in-out placeholder-green-400 text-green-400"
       />
     </div>
   );

@@ -6,17 +6,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-4 py-2 bg-purple-500 text-white rounded disabled:bg-purple-300 disabled:cursor-not-allowed transition duration-300 ease-in-out hover:bg-purple-600"
+        className="px-4 py-2 bg-black text-green-400 rounded border border-green-400 disabled:bg-gray-800 disabled:text-gray-500 disabled:border-gray-500 disabled:cursor-not-allowed transition duration-300 ease-in-out hover:bg-green-400 hover:text-black"
       >
         Previous
       </button>
-      <span className="px-4 py-2 bg-purple-200 bg-opacity-50 text-purple-800 rounded">
+      <span className="px-4 py-2 bg-black bg-opacity-80 text-green-400 rounded border border-green-400">
         Page {currentPage} of {totalPages}
       </span>
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-4 py-2 bg-purple-500 text-white rounded disabled:bg-purple-300 disabled:cursor-not-allowed transition duration-300 ease-in-out hover:bg-purple-600"
+        className="px-4 py-2 bg-black text-green-400 rounded border border-green-400 disabled:bg-gray-800 disabled:text-gray-500 disabled:border-gray-500 disabled:cursor-not-allowed transition duration-300 ease-in-out hover:bg-green-400 hover:text-black"
       >
         Next
       </button>
