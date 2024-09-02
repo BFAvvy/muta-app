@@ -70,10 +70,10 @@ const PokemonDetail = ({ name, onBack }) => {
   };
 
   return (
-    <div className="bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-6 max-w-2xl mx-auto border border-green-400">
+    <div className="bg-gradient-to-br from-black to-gray-800 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl p-8 max-w-2xl mx-auto border-2 border-green-400 transform transition-all duration-500 hover:scale-105">
       <button 
         onClick={onBack}
-        className="mb-4 bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+        className="mb-4 bg-gradient-to-r from-green-400 to-blue-500 hover:from-blue-500 hover:to-green-400 text-black font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-110 shadow-lg"
       >
         Back to List
       </button>
@@ -81,15 +81,15 @@ const PokemonDetail = ({ name, onBack }) => {
         <img 
           src={pokemon.sprites.front_default} 
           alt={pokemon.name} 
-          className="w-48 h-48 md:w-64 md:h-64"
+          className="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-green-400 shadow-lg transform transition-transform duration-300 hover:scale-110"
         />
         <div className="md:ml-6 mt-4 md:mt-0">
-          <h2 className="text-3xl font-bold mb-4 capitalize text-green-400">{pokemon.name}</h2>
+          <h2 className="text-3xl font-bold mb-4 capitalize text-green-400 drop-shadow-lg">{pokemon.name}</h2>
           <div className="flex mb-4">
             {pokemon.types.map((type, index) => (
               <span 
                 key={index} 
-                className="px-3 py-1 bg-black bg-opacity-50 text-green-400 rounded-full text-sm mr-2 capitalize border border-green-400"
+                className="px-3 py-1 bg-black bg-opacity-50 text-green-400 rounded-full text-sm mr-2 capitalize border border-green-400 shadow-md"
               >
                 {type.type.name}
               </span>
@@ -100,7 +100,7 @@ const PokemonDetail = ({ name, onBack }) => {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`mr-2 px-3 py-1 rounded-full text-sm capitalize ${
+                className={`mr-2 px-3 py-1 rounded-full text-sm capitalize shadow-md ${
                   activeTab === tab ? 'bg-green-400 text-black' : 'bg-black bg-opacity-50 text-green-400 border border-green-400'
                 }`}
               >
