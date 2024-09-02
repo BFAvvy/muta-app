@@ -21,31 +21,66 @@ const PokemonCard = ({ name, url, onClick }) => {
     fetchPokemonData();
   }, [url]);
 
-  if (loading) return <div className="animate-pulse bg-black bg-opacity-50 h-48 rounded-lg"></div>;
-  if (error) return <div className="text-green-400">{error}</div>;
+  if (loading) return <div className="animate-pulse bg-black bg-opacity-50 h-64 rounded-lg"></div>;
+  if (error) return <div className="text-red-500 text-center">{error}</div>;
   if (!pokemonData) return null;
+
+  const getTypeColor = (type) => {
+    const colors = {
+      normal: 'bg-gray-400',
+      fire: 'bg-red-500',
+      water: 'bg-blue-500',
+      electric: 'bg-yellow-400',
+      grass: 'bg-green-500',
+      ice: 'bg-blue-200',
+      fighting: 'bg-red-700',
+      poison: 'bg-purple-500',
+      ground: 'bg-yellow-600',
+      flying: 'bg-indigo-400',
+      psychic: 'bg-pink-500',
+      bug: 'bg-green-400',
+      rock: 'bg-yellow-700',
+      ghost: 'bg-purple-700',
+      dragon: 'bg-indigo-700',
+      dark: 'bg-gray-700',
+      steel: 'bg-gray-500',
+      fairy: 'bg-pink-300',
+    };
+    return colors[type] || 'bg-gray-400';
+  };
 
   return (
     <div 
-      className="bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg border border-green-400 rounded-lg p-4 hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer transform hover:scale-105 hover:bg-opacity-90"
+      className="group bg-gradient-to-br from-black to-gray-800 rounded-xl p-6 transition-all duration-500 ease-in-out cursor-pointer transform hover:scale-105 border-2 border-green-400 hover:border-green-300 hover:shadow-[0_0_15px_rgba(52,211,153,0.5)] relative overflow-hidden"
       onClick={() => onClick(name)}
     >
-      <img 
-        src={pokemonData.sprites.front_default} 
-        alt={name} 
-        className="w-32 h-32 mx-auto"
-      />
-      <h2 className="text-xl font-semibold text-center mt-2 capitalize text-green-400">{name}</h2>
-      <div className="flex flex-wrap justify-center mt-2">
-        {pokemonData.types.map((type, index) => (
-          <span 
-            key={index} 
-            className="px-2 py-1 bg-black bg-opacity-50 text-green-400 rounded-full text-sm mr-1 mb-1"
-          >
-            {type.type.name}
-          </span>
-        ))}
+      <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-blue-500 opacity-20 group-hover:opacity-30 transition-opacity duration-500 rounded-xl"></div>
+      <div className="relative z-10">
+        <div className="relative group-hover:animate-bounce transition-all duration-300">
+          <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-blue-500 opacity-20 rounded-full blur-md group-hover:blur-lg transition-all duration-300"></div>
+          <img 
+            src={pokemonData.sprites.front_default} 
+            alt={name} 
+            className="w-40 h-40 mx-auto drop-shadow-xl transition-transform duration-300 group-hover:scale-110"
+          />
+        </div>
+        <h2 className="text-2xl font-bold text-center mt-4 capitalize text-green-300 drop-shadow-lg group-hover:text-green-200 transition-colors duration-300">{name}</h2>
+        <div className="flex flex-wrap justify-center mt-3 gap-2">
+          {pokemonData.types.map((type, index) => (
+            <span 
+              key={index} 
+              className={`px-3 py-1 ${getTypeColor(type.type.name)} text-white rounded-full text-xs font-semibold shadow-md transition-all duration-300 group-hover:scale-110`}
+            >
+              {type.type.name}
+            </span>
+          ))}
+        </div>
+        <div className="mt-4 flex justify-between text-green-300 group-hover:text-green-200 transition-colors duration-300">
+          <span>HP: {pokemonData.stats[0].base_stat}</span>
+          <span>ATK: {pokemonData.stats[1].base_stat}</span>
+        </div>
       </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-green-400 to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
     </div>
   );
 };
